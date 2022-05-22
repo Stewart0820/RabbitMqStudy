@@ -31,4 +31,19 @@ public class OrderService {
         rabbitTemplate.convertAndSend(exchangeName,routingkey,orderId);
 
     }
+    public void makeOrderDirect(String userid,String productid,int num){
+        //根据商品id查看库存是否充足
+
+        //保存订单
+        String orderId = UUID.randomUUID().toString();
+        System.out.println("订单生产成功"+orderId);
+
+        //通过mq来完成消息的分发
+        String exchangeName = "direct_order_exchange";
+
+        rabbitTemplate.convertAndSend(exchangeName,"email",orderId);
+        rabbitTemplate.convertAndSend(exchangeName,"duanxin",orderId);
+        rabbitTemplate.convertAndSend(exchangeName,"sms",orderId);
+
+    }
 }

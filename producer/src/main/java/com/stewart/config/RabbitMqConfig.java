@@ -11,51 +11,54 @@ import org.springframework.context.annotation.Configuration;
  * @author Stewart
  * @create 2022/5/21
  * @Description
+ *
+ * fanout模式
+ *
  */
-@Configuration
-public class RabbitMqConfig {
-
-    /**
-     * 声明注册fanout模式的交换机
-     * @return
-     */
-    @Bean
-    public FanoutExchange fanoutExchange(){
-        return new FanoutExchange("fanout_order_exchange",true,false);
-    }
-
-    // 声明队列，sms ，email ，duanxin
-
-    @Bean
-    public Queue smsQueue(){
-        return new Queue("sms.fanout.queue",true);
-    }
-
-    @Bean
-    public Queue duanxinQueue(){
-        return new Queue("duanxin.fanout.queue",true);
-    }
-
-    @Bean
-    public Queue emailQueue(){
-        return new Queue("email.fanout.queue",true);
-    }
-
-    // 完成绑定关系
-
-
-    @Bean
-    public Binding smsBinding(){
-        return BindingBuilder.bind(smsQueue()).to(fanoutExchange());
-    }
-
-    @Bean
-    public Binding duanxinBinding(){
-        return BindingBuilder.bind(duanxinQueue()).to(fanoutExchange());
-    }
-
-    @Bean
-    public Binding emailBinding(){
-        return BindingBuilder.bind(emailQueue()).to(fanoutExchange());
-    }
-}
+//@Configuration
+//public class RabbitMqConfig {
+//
+//    /**
+//     * 声明注册fanout模式的交换机
+//     * @return
+//     */
+//    @Bean
+//    public FanoutExchange fanoutExchange(){
+//        return new FanoutExchange("fanout_order_exchange",true,false);
+//    }
+//
+//    // 声明队列，sms ，email ，duanxin
+//
+//    @Bean
+//    public Queue smsQueue(){
+//        return new Queue("sms.fanout.queue",true);
+//    }
+//
+//    @Bean
+//    public Queue duanxinQueue(){
+//        return new Queue("duanxin.fanout.queue",true);
+//    }
+//
+//    @Bean
+//    public Queue emailQueue(){
+//        return new Queue("email.fanout.queue",true);
+//    }
+//
+//    // 完成绑定关系
+//
+//
+//    @Bean
+//    public Binding smsBinding(){
+//        return BindingBuilder.bind(smsQueue()).to(fanoutExchange());
+//    }
+//
+//    @Bean
+//    public Binding duanxinBinding(){
+//        return BindingBuilder.bind(duanxinQueue()).to(fanoutExchange());
+//    }
+//
+//    @Bean
+//    public Binding emailBinding(){
+//        return BindingBuilder.bind(emailQueue()).to(fanoutExchange());
+//    }
+//}

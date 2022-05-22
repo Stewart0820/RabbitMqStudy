@@ -20,4 +20,9 @@ public class ProducerTest {
     void contextLoads(){
         orderService.makeOrder("1","1",12);
     }
+
+    @Test
+    void contextLoadsDirect(){
+        orderService.makeOrderDirect("1","1",12);
+    }
 }
